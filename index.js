@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(f, parentObject) {
+module.exports = function(f, param, parentObject) {
     var result;
     var error;
 
@@ -21,7 +21,7 @@ module.exports = function(f, parentObject) {
     }
 
     try {
-        result = f.call(parentObject);
+        result = f.apply(parentObject, [param]);
     } catch (e) {
         error = e;
     }

@@ -6,41 +6,41 @@ var promiseFunc = require('../');
  * create functions
  */
 
-var justReturn = function() {
-    return 'justReturn ok!'
+var justReturn = function(param) {
+    return 'justReturn ok!: ' + param;
 };
 
-var throwError = function() {
-    throw 'throwError ok!';
+var throwError = function(param) {
+    throw 'throwError ok!: ' + param;
 };
 
-var returnPromiseResolve = function() {
+var returnPromiseResolve = function(param) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            resolve('returnPromiseResolve ok!');
+            resolve('returnPromiseResolve ok!: ' + param);
         }, 500);
     });
 };
 
-var returnPromiseReject = function() {
+var returnPromiseReject = function(param) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            reject('returnPromiseReject ok!');
+            reject('returnPromiseReject ok!: ' + param);
         }, 1000);
     });
 };
 
-var callPromiseResolve = function() {
+var callPromiseResolve = function(param) {
     var self = this;
     setTimeout(function() {
-        self.resolve('callPromiseResolve ok!');
+        self.resolve('callPromiseResolve ok!: ' + param);
     }, 1500);
 };
 
-var callPromiseReject = function() {
+var callPromiseReject = function(param) {
     var self = this;
     setTimeout(function() {
-        self.reject('callPromiseReject ok!');
+        self.reject('callPromiseReject ok!: ' + param);
     }, 2000);
 };
 
@@ -58,17 +58,17 @@ class Context {
     }
 }
 
-var callPromiseResolveWithContext = function() {
+var callPromiseResolveWithContext = function(param) {
     var self = this;
     setTimeout(function() {
-        self.resolve('callPromiseResolveWithContext ok! :' + self.getContextValue());
+        self.resolve('callPromiseResolveWithContext ok! :' + self.getContextValue() + ' param: ' + param);
     }, 1500);
 };
 
-var callPromiseRejectWithContext = function() {
+var callPromiseRejectWithContext = function(param) {
     var self = this;
     setTimeout(function() {
-        self.reject('callPromiseRejectWithContext ok! : ' + self.getContextValue());
+        self.reject('callPromiseRejectWithContext ok! : :' + self.getContextValue() + ' param: ' + param);
     }, 2000);
 };
 
@@ -76,7 +76,7 @@ var callPromiseRejectWithContext = function() {
  * run functions
  */
 
-promiseFunc(justReturn)
+promiseFunc(justReturn, 'paramObject')
     .then(function(val) {
         console.log(val);
     })
@@ -84,7 +84,7 @@ promiseFunc(justReturn)
         console.error(error);
     });
 
-promiseFunc(throwError)
+promiseFunc(throwError, 'paramObject')
     .then(function(val) {
         console.log(val);
     })
@@ -92,7 +92,7 @@ promiseFunc(throwError)
         console.error(error);
     });
 
-promiseFunc(returnPromiseResolve)
+promiseFunc(returnPromiseResolve, 'paramObject')
     .then(function(val) {
         console.log(val);
     })
@@ -100,7 +100,7 @@ promiseFunc(returnPromiseResolve)
         console.error(error);
     });
 
-promiseFunc(returnPromiseReject)
+promiseFunc(returnPromiseReject, 'paramObject')
     .then(function(val) {
         console.log(val);
     })
@@ -108,7 +108,7 @@ promiseFunc(returnPromiseReject)
         console.error(error);
     });
 
-promiseFunc(callPromiseResolveWithContext, new Context())
+promiseFunc(callPromiseResolveWithContext, 'paramObject', new Context())
     .then(function(val) {
         console.log(val);
     })
@@ -116,7 +116,7 @@ promiseFunc(callPromiseResolveWithContext, new Context())
         console.error(error);
     });
 
-promiseFunc(callPromiseRejectWithContext, new Context())
+promiseFunc(callPromiseRejectWithContext, 'paramObject', new Context())
     .then(function(val) {
         console.log(val);
     })

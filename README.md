@@ -6,18 +6,49 @@ $ npm install promise-function
 
 ## Examples
 
-  To view the examples, clone the Express repo and install the dependencies:
+  You can do: 
 
-```bash
-$ git clone git://github.com/strongloop/express.git --depth 1
-$ cd express
-$ npm install
-```
+```js
+var promiseFunc = require('promise-function');
 
-  Then run whichever example you want:
+promiseFunc(function(param) {
+        return 'justReturn ok: ' + param;
+    }, 'paramObject')
+    .then(function(val) {
+        console.log(val);
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
 
-```bash
-$ node examples/content-negotiation
+promiseFunc(function(param) {
+        return new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                reject('returnPromiseReject ok: ' + param);
+            }, 1000);
+        });
+    }, 'paramObject')
+    .then(function(val) {
+        console.log(val);
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
+    
+
+
+promiseFunc(function(param) {
+        var self = this;
+        setTimeout(function() {
+            self.resolve('callPromiseResolve ok: ' + param);
+        }, 2000);
+    }, 'paramObject')
+    .then(function(val) {
+        console.log(val);
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
 ```
 
 ## License
