@@ -1,0 +1,47 @@
+{
+  "name": "promise-function",
+  "description": "Function always return promise",
+  "version": "0.0.3",
+  "author": {
+    "name": "Andrey Senaev",
+    "email": "gsacryfice@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Andrey Senaev",
+      "email": "gsacryfice@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/senaev/promise-function.git"
+  },
+  "homepage": "http://github.com/senaev/promise-function",
+  "keywords": [
+    "promise",
+    "function"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">= 4.1.0"
+  },
+  "files": [
+    "LICENSE",
+    "History.md",
+    "README.md",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "node example/example.js"
+  },
+  "maintainers": [
+    {
+      "name": "senaev",
+      "email": "gsecryfice@gmail.com"
+    }
+  ],
+  "directories": {}
+}
+
